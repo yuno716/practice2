@@ -6,6 +6,28 @@
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+  <h1>TODOリスト</h1>
+  <form class="check">
+    <input type="checkbox" checked="checked"> すべて
+    <input type="checkbox"> 作業中
+    <input type="checkbox"> 完了
+  </form>
+  <div class="work">
+    <table id="table_element">
+      <tr>
+        <th>ID</th>
+        <th>コメント</th>
+        <th>状態</th>
+      </tr>
+    </table>
+  </div>
+  <div class="new">
+    <h2>新規タスクの追加</h2>
+    <input type="text" name="newtext">
+    <button id="addition">追加</button>
+  </div>
+
+
   <script src="js/main.js"></script>
 </body>
 </html>

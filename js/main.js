@@ -5,24 +5,16 @@
 
   let count = 0;
 
-  function btnNum() {
+  function btnNum() {  //連番作成
     return count++;
   }
 
-  function createActivityBtn() {  //作業中ボタン作成
+  function createActivityBtn() {  //作業中・完了ボタン作成
     const stateActivity = document.createElement('input');
     stateActivity.classList.add('activity');
     stateActivity.type = 'button';
     stateActivity.value = '作業中';
     return stateActivity;
-  }
-
-  function createCompletionBtn() {  //完了ボタン作成
-    const stateCompletion = document.createElement('input');
-    stateCompletion.classList.add('completion');
-    stateCompletion.type = 'button';
-    stateCompletion.value = '完了';
-    return stateCompletion;
   }
   
   function createDeleteBtn() {  //削除ボタン作成
@@ -34,7 +26,7 @@
   }
 
   
-  document.getElementById('addition').addEventListener('click',() => {
+  document.getElementById('addition').addEventListener('click', () => {
     const trElement = document.createElement('tr');
     tbodyElement.appendChild(trElement);
 
@@ -49,7 +41,15 @@
     const a = createActivityBtn();
     trElement.appendChild(a);
 
+    a.addEventListener('click', () => {
+      a.value = '完了';
+    });
+
     const d = createDeleteBtn();
     trElement.appendChild(d);
+
+    d.addEventListener('click', () => {
+      trElement.parentNode.removeChild(trElement);
+    });
   });
 }

@@ -1,34 +1,27 @@
 'use strict';
 {
-  const btn1 = document.querySelector('input[name="btn1"]');
-  const btn2 = document.querySelector('input[name="btn2"]');
-  const btn3 = document.querySelector('input[name="btn3"]');
+  const activity = document.querySelector('input[name="activity"]');
+  const completion = document.querySelector('input[name="completion"]');
 
-  function btn1Click() {  //checkbox のすべてクリック時
-    btn1.checked = true;
-    btn2.checked = false;
-    btn3.checked = false;
-  }
-  function btn2Click() {  //checkbox の作業中クリック時
-    btn1.checked = false;
-    btn2.checked = true;
-    btn3.checked = false;
-  }
-  function btn3Click() {  //checkbox の完了クリック時
-    btn1.checked = false;
-    btn2.checked = false;
-    btn3.checked = true;
+
+  function activityClick() {  // radio の作業中クリック時
+    const comBtn = document.getElementsByClassName('completion_btn').parentNode;
+    comBTn.style.display = 'none';
+    return comBtn;
   }
 
-  btn1.addEventListener('click', () => {
-    btn1Click();
+  function completionClick() {  // radio の完了クリック時
+    const actBtn = document.getElementsByClassName('activity_btn').parentNode;
+    actBtn.style.display = 'none';
+    return actBtn;
+  }
+
+  activity.addEventListener('click', () => {
+    activityClick();
   });
 
-  btn2.addEventListener('click', () => {
-    btn2Click();
-  });
-  btn3.addEventListener('click', () => {
-    btn3Click();
+  completion.addEventListener('click', () => {
+    completionClick();
   });
 
 
@@ -37,13 +30,14 @@
 
   let count = 0;
 
+
   function btnNum() {  //連番作成
     return count++;
   }
 
   function createActivityBtn() {  //作業中・完了ボタン作成
     const stateActivity = document.createElement('input');
-    stateActivity.classList.add('activity');
+    stateActivity.classList.add('activity_btn');
     stateActivity.type = 'button';
     stateActivity.value = '作業中';
     return stateActivity;
@@ -51,7 +45,7 @@
   
   function createDeleteBtn() {  //削除ボタン作成
     const stateDeletion = document.createElement('input');
-    stateDeletion.classList.add('deletion');
+    stateDeletion.classList.add('deletion_btn');
     stateDeletion.type = 'button';
     stateDeletion.value = '削除';
     return stateDeletion;
@@ -74,6 +68,7 @@
     trElement.appendChild(a);
 
     a.addEventListener('click', () => {
+      a.classList.replace('activity_btn', 'completion_btn');
       a.value = '完了';
     });
 

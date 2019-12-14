@@ -1,28 +1,20 @@
 'use strict';
 {
-  const activity = document.querySelector('input[name="activity"]');
-  const completion = document.querySelector('input[name="completion"]');
+  function radioChange() {
+    const checks = document.getElementsByName('checkList');  // name 取得
 
-
-  function activityClick() {  // radio の作業中クリック時
-    const comBtn = document.getElementsByClassName('completion_btn').parentNode;
-    comBTn.style.display = 'none';
-    return comBtn;
+    for(let i = 0; i < checks.length; i++){
+      if (checks[1].checked) {  // name の2番目チェック時
+        const comBtn = document.getElementsByClassName('completion_btn').parentNode;
+        comBtn.style.display = 'none';
+      } else if (checks[2].checked) {  // name の3番目チェック時
+        const actBtn = document.getElementsByClassName('activity_btn').parentNode;
+        actBtn.style.display = 'none';
+      }
+    }
   }
 
-  function completionClick() {  // radio の完了クリック時
-    const actBtn = document.getElementsByClassName('activity_btn').parentNode;
-    actBtn.style.display = 'none';
-    return actBtn;
-  }
-
-  activity.addEventListener('click', () => {
-    activityClick();
-  });
-
-  completion.addEventListener('click', () => {
-    completionClick();
-  });
+  radioChange();
 
 
   const tbodyElement = document.getElementById('tbody_element');
@@ -64,18 +56,18 @@
     com.textContent = newText.value;
     trElement.appendChild(com);
 
-    const a = createActivityBtn();
-    trElement.appendChild(a);
+    const act = createActivityBtn();
+    trElement.appendChild(act);
 
-    a.addEventListener('click', () => {
-      a.classList.replace('activity_btn', 'completion_btn');
-      a.value = '完了';
+    act.addEventListener('click', () => {
+      act.classList.replace('activity_btn', 'completion_btn');
+      act.value = '完了';
     });
 
-    const d = createDeleteBtn();
-    trElement.appendChild(d);
+    const del = createDeleteBtn();
+    trElement.appendChild(del);
 
-    d.addEventListener('click', () => {
+    del.addEventListener('click', () => {
       trElement.parentNode.removeChild(trElement);
     });
   });
